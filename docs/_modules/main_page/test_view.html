@@ -1,0 +1,536 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>main_page.test_view &mdash; Jon Gaffney - Portfollio 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Jon Gaffney - Portfollio
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_docs.html">Developer Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Jon Gaffney - Portfollio</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>main_page.test_view</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for main_page.test_view</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.http</span> <span class="k">import</span> <span class="n">HttpResponse</span><span class="p">,</span> <span class="n">HttpResponseRedirect</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="k">import</span> <span class="n">loader</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="k">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="k">import</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">django.template.loader</span> <span class="k">import</span> <span class="n">get_template</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.views</span> <span class="k">import</span> <span class="n">LoginView</span><span class="p">,</span> <span class="n">LogoutView</span>
+<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="k">import</span> <span class="n">View</span><span class="p">,</span> <span class="n">TemplateView</span>
+<span class="kn">from</span> <span class="nn">django.views.generic.edit</span> <span class="k">import</span> <span class="n">CreateView</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="k">import</span> <span class="n">login_required</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.mixins</span> <span class="k">import</span> <span class="n">LoginRequiredMixin</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="k">import</span> <span class="n">Feedback</span><span class="p">,</span> <span class="n">Development</span>
+<span class="kn">from</span> <span class="nn">.forms</span> <span class="k">import</span> <span class="n">DevelopmentForm</span><span class="p">,</span> <span class="n">FeedbackForm</span>
+
+<div class="viewcode-block" id="HomePageView"><a class="viewcode-back" href="../../dev_docs.html#main_page.test_view.HomePageView">[docs]</a><span class="k">class</span> <span class="nc">HomePageView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    the generic homepageview template, using generic template view</span>
+
+<span class="sd">    :type TemplateView: object</span>
+<span class="sd">    :param TemplateView: generic template view but requring specal data so unable to use the MainPageView</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;main_page/index.html&#39;</span>
+
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">HomePageView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Development</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-development_date&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">context</span></div>
+
+<div class="viewcode-block" id="FeedbackCreate"><a class="viewcode-back" href="../../dev_docs.html#main_page.test_view.FeedbackCreate">[docs]</a><span class="k">class</span> <span class="nc">FeedbackCreate</span><span class="p">(</span><span class="n">CreateView</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    allows for the creation of feedback, saves the data to the db upon sucess</span>
+
+<span class="sd">    :type CreateView: object</span>
+<span class="sd">    :param CreateView: the base django CreateView  generic view</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Feedback</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;feedback_user_name&#39;</span><span class="p">,</span> <span class="s1">&#39;feedback_user_email&#39;</span><span class="p">,</span> <span class="s1">&#39;feedback_reason&#39;</span><span class="p">,</span> <span class="s1">&#39;feedback_content&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="DevelopmentCreate"><a class="viewcode-back" href="../../dev_docs.html#main_page.test_view.DevelopmentCreate">[docs]</a><span class="k">class</span> <span class="nc">DevelopmentCreate</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    allows for the creation of development, saves the data to the db upon sucess</span>
+
+<span class="sd">    :type LoginRequiredMixin: object</span>
+<span class="sd">    :param LoginRequiredMixin: requries a valid user</span>
+
+<span class="sd">    :type CreateView: object</span>
+<span class="sd">    :param CreateView: the base django CreateView  generic view</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">login_url</span> <span class="o">=</span> <span class="s1">&#39;/login/&#39;</span>
+    <span class="n">redirect_field_name</span> <span class="o">=</span> <span class="s1">&#39;redirect_to&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Development</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;development_username&#39;</span><span class="p">,</span> <span class="s1">&#39;development_title&#39;</span><span class="p">,</span> <span class="s1">&#39;development_content&#39;</span><span class="p">,</span> <span class="s1">&#39;development_project&#39;</span><span class="p">]</span></div>
+
+<span class="k">class</span> <span class="nc">MainPageView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    the main generic template view for pages not requiring any data other than template</span>
+<span class="sd">    this probally isnt the best way to use a view but it removed a lot of uneeded code</span>
+
+<span class="sd">    :type TemplateView: object</span>
+<span class="sd">    :param TemplateView: passes in the template name from the URL&#39;s</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">feedback_viewer</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    displays all of the feedback data from the db</span>
+
+<span class="sd">    :type request: object</span>
+<span class="sd">    :param request: the request sent from the browser</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">all_feedback</span> <span class="o">=</span> <span class="n">Feedback</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-feedback_date&#39;</span><span class="p">)</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;main_page/feedback.html&#39;</span><span class="p">)</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;items&#39;</span><span class="p">:</span> <span class="n">all_feedback</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">template_name</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context_object_name</span><span class="p">,</span> <span class="n">request</span><span class="p">))</span>
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">feedback_item</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">item_id</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    displays the feedback data to the user when selecetd</span>
+
+<span class="sd">    :type request: object</span>
+<span class="sd">    :param request: the request sent from the browser</span>
+
+<span class="sd">    :type item_id: integer</span>
+<span class="sd">    :param item_id: the item selected by the user which returns its pk to be search in the db</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># if broken item_id name will just return error page</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="o">==</span> <span class="s2">&quot;&#39;&#39;}&quot;</span><span class="p">:</span>
+        <span class="n">context_object_name</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">template_name</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context_object_name</span><span class="p">,</span> <span class="n">request</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">active_feedback_name</span> <span class="o">=</span> <span class="n">Feedback</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">item_id</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">active_feedback_name</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">template_name</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;main_page/feedback_item.html&#39;</span><span class="p">)</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;item&#39;</span><span class="p">:</span> <span class="n">active_feedback_name</span><span class="p">,</span>
+                            <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">template_name</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context_object_name</span><span class="p">,</span> <span class="n">request</span><span class="p">))</span>
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">feedback_update</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">item_id</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    saves the new feedback data to the database</span>
+
+<span class="sd">    :type request: object</span>
+<span class="sd">    :param request: the request sent from the browser</span>
+
+<span class="sd">    :type item_id: integer</span>
+<span class="sd">    :param item_id: the item selected by the user which returns its pk to be search in the db</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">):</span>
+        <span class="n">feedback_data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
+        <span class="c1"># needs valid check</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">feedback_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;feedback_user_name&quot;</span><span class="p">)</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">feedback_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;feedback_user_email&quot;</span><span class="p">)</span>
+        <span class="n">reason</span> <span class="o">=</span> <span class="n">feedback_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;feedback_reason&quot;</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">feedback_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;feedback_content&quot;</span><span class="p">)</span>
+        <span class="n">resovled</span> <span class="o">=</span> <span class="n">feedback_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;feedback_resovled&quot;</span><span class="p">)</span>
+
+        <span class="n">date</span> <span class="o">=</span> <span class="n">Feedback</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">item_id</span><span class="p">)</span>
+        <span class="n">db_feedback</span> <span class="o">=</span> <span class="n">Feedback</span><span class="p">(</span>   <span class="n">pk</span><span class="o">=</span><span class="n">item_id</span><span class="p">,</span> 
+                                        <span class="n">feedback_user_name</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
+                                        <span class="n">feedback_user_email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span>
+                                        <span class="n">feedback_reason</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span>
+                                        <span class="n">feedback_content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span>
+                                        <span class="n">feedback_resovled</span><span class="o">=</span><span class="n">resovled</span><span class="p">,</span>
+                                        <span class="n">feedback_date</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">feedback_date</span><span class="p">)</span>
+        <span class="n">db_feedback</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="n">template_name</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;main_page/success.html&#39;</span><span class="p">)</span>
+        <span class="n">context_object_name</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">template_name</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context_object_name</span><span class="p">,</span> <span class="n">request</span><span class="p">))</span>
+
+
+<span class="c1"># @login_required</span>
+<span class="c1"># def feedback_update(request, item_id):</span>
+<span class="c1">#     &#39;&#39;&#39;</span>
+<span class="c1">#     updates development data to the database</span>
+
+<span class="c1">#     :type request: object</span>
+<span class="c1">#     :param request: the request sent from the browser</span>
+
+<span class="c1">#     :type item_id: integer</span>
+<span class="c1">#     :param item_id: the item selected by the user which returns its pk to be search in the db</span>
+<span class="c1">#     &#39;&#39;&#39;</span>
+<span class="c1">#     print(item_id)</span>
+<span class="c1">#     if (request.method == &#39;POST&#39;):</span>
+
+<span class="c1">#         form = FeedbackForm(request.POST)</span>
+
+<span class="c1">#         if form.is_valid():</span>
+<span class="c1">#             feedback_user_name = form.cleaned_data[&#39;feedback_user_name&#39;]</span>
+<span class="c1">#             feedback_user_email = form.cleaned_data[&#39;feedback_user_email&#39;]</span>
+<span class="c1">#             feedback_reason = form.cleaned_data[&#39;feedback_reason&#39;]</span>
+<span class="c1">#             feedback_content = form.cleaned_data[&#39;feedback_content&#39;]</span>
+<span class="c1">#             feedback_resovled = form.cleaned_data[&#39;feedback_resovled&#39;]</span>
+
+<span class="c1">#             # if it has no id then create a new entry into the db</span>
+<span class="c1">#             date = Feedback.objects.get(pk=item_id)</span>
+<span class="c1">#             print(date)</span>
+<span class="c1">#             db_feedback = Feedback( pk=item_id, </span>
+<span class="c1">#                                     feedback_user_name=feedback_user_name,</span>
+<span class="c1">#                                     feedback_user_email=feedback_user_email,</span>
+<span class="c1">#                                     feedback_reason=feedback_reason,</span>
+<span class="c1">#                                     feedback_content=feedback_content,</span>
+<span class="c1">#                                     feedback_resovled=feedback_resovled,</span>
+<span class="c1">#                                     feedback_date=date.feedback_date)</span>
+<span class="c1">#             db_feedback.save()</span>
+
+<span class="c1">#             return HttpResponseRedirect(&#39;/&#39;)</span>
+<span class="c1">#     else:</span>
+<span class="c1">#         form = DevelopmentForm()</span>
+<span class="c1">#         return HttpResponseRedirect(&#39;/&#39;)</span>
+
+<span class="c1">#     return render(request, &#39;main_page/feedback_form.html&#39;, {&#39;form&#39;: form})</span>
+
+<span class="k">def</span> <span class="nf">feedback_new</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    updates development data to the database</span>
+
+<span class="sd">    :type request: object</span>
+<span class="sd">    :param request: the request sent from the browser</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">):</span>
+
+        <span class="n">form</span> <span class="o">=</span> <span class="n">FeedbackForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">feedback_user_name</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;feedback_user_name&#39;</span><span class="p">]</span>
+            <span class="n">feedback_user_email</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;feedback_user_email&#39;</span><span class="p">]</span>
+            <span class="n">feedback_reason</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;feedback_reason&#39;</span><span class="p">]</span>
+            <span class="n">feedback_content</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;feedback_content&#39;</span><span class="p">]</span>
+
+            <span class="n">Feedback</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span> <span class="n">feedback_user_name</span><span class="o">=</span><span class="n">feedback_user_name</span><span class="p">,</span>
+                                        <span class="n">feedback_user_email</span><span class="o">=</span><span class="n">feedback_user_email</span><span class="p">,</span>
+                                        <span class="n">feedback_reason</span><span class="o">=</span><span class="n">feedback_reason</span><span class="p">,</span>
+                                        <span class="n">feedback_content</span><span class="o">=</span><span class="n">feedback_content</span><span class="p">,</span>
+                                        <span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">FeedbackForm</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;main_page/feedback_form.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>
+
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">development_viewer</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    displays all of the development data from the db</span>
+
+<span class="sd">    :type request: object</span>
+<span class="sd">    :param request: the request sent from the browser</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">all_development</span> <span class="o">=</span> <span class="n">Development</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-development_date&#39;</span><span class="p">)</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;main_page/development.html&#39;</span><span class="p">)</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;items&#39;</span><span class="p">:</span> <span class="n">all_development</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">template_name</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context_object_name</span><span class="p">,</span> <span class="n">request</span><span class="p">))</span>
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">development_item</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">item_id</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    displays the development data to the user when selecetd</span>
+
+<span class="sd">    :type request: object</span>
+<span class="sd">    :param request: the request sent from the browser</span>
+
+<span class="sd">    :type item_id: integer</span>
+<span class="sd">    :param item_id: the item selected by the user which returns its pk to be search in the db</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># if broken item_id name will just return error page</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="o">==</span> <span class="s2">&quot;&#39;&#39;}&quot;</span><span class="p">:</span>
+        <span class="n">context_object_name</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">template_name</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context_object_name</span><span class="p">,</span> <span class="n">request</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">active_development_name</span> <span class="o">=</span> <span class="n">Development</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">item_id</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">active_development_name</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">template_name</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;main_page/development_item.html&#39;</span><span class="p">)</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;item&#39;</span><span class="p">:</span> <span class="n">active_development_name</span><span class="p">,</span>
+                            <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">template_name</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context_object_name</span><span class="p">,</span> <span class="n">request</span><span class="p">))</span>
+
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">development_update</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">item_id</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    updates development data to the database</span>
+
+<span class="sd">    :type request: object</span>
+<span class="sd">    :param request: the request sent from the browser</span>
+
+<span class="sd">    :type item_id: integer</span>
+<span class="sd">    :param item_id: the item selected by the user which returns its pk to be search in the db</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">):</span>
+
+        <span class="n">form</span> <span class="o">=</span> <span class="n">DevelopmentForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">development_username</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;development_username&#39;</span><span class="p">]</span>
+            <span class="n">development_project</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;development_project&#39;</span><span class="p">]</span>
+            <span class="n">development_title</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;development_title&#39;</span><span class="p">]</span>
+            <span class="n">development_content</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;development_content&#39;</span><span class="p">]</span>
+
+            <span class="c1"># if it has no id then create a new entry into the db</span>
+            <span class="k">if</span> <span class="n">item_id</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="n">Development</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span> <span class="n">development_username</span><span class="o">=</span><span class="n">development_username</span><span class="p">,</span>
+                                            <span class="n">development_project</span><span class="o">=</span><span class="n">development_project</span><span class="p">,</span>
+                                            <span class="n">development_title</span><span class="o">=</span><span class="n">development_title</span><span class="p">,</span>
+                                            <span class="n">development_content</span><span class="o">=</span><span class="n">development_content</span>
+                                            <span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+                <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+            <span class="c1"># if it has an id then update the previous entry</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">date</span> <span class="o">=</span> <span class="n">Development</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">item_id</span><span class="p">)</span>
+
+                <span class="n">db_development</span> <span class="o">=</span> <span class="n">Development</span><span class="p">(</span>   <span class="n">pk</span><span class="o">=</span><span class="n">item_id</span><span class="p">,</span> 
+                                                <span class="n">development_username</span><span class="o">=</span><span class="n">development_username</span><span class="p">,</span>
+                                                <span class="n">development_project</span><span class="o">=</span><span class="n">development_project</span><span class="p">,</span>
+                                                <span class="n">development_title</span><span class="o">=</span><span class="n">development_title</span><span class="p">,</span>
+                                                <span class="n">development_content</span><span class="o">=</span><span class="n">development_content</span><span class="p">,</span>
+                                                <span class="n">development_date</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">development_date</span><span class="p">)</span>
+                <span class="n">db_development</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+                <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">DevelopmentForm</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;main_page/development_form.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">development_new</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    saves the new development data to the database</span>
+
+<span class="sd">    :type request: object</span>
+<span class="sd">    :param request: the request sent from the browser</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">):</span>
+
+        <span class="n">form</span> <span class="o">=</span> <span class="n">DevelopmentForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">development_username</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;development_username&#39;</span><span class="p">]</span>
+            <span class="n">development_project</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;development_project&#39;</span><span class="p">]</span>
+            <span class="n">development_title</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;development_title&#39;</span><span class="p">]</span>
+            <span class="n">development_content</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;development_content&#39;</span><span class="p">]</span>
+
+            <span class="c1"># if it has no id then create a new entry into the db</span>
+            <span class="n">Development</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span> <span class="n">development_username</span><span class="o">=</span><span class="n">development_username</span><span class="p">,</span>
+                                        <span class="n">development_project</span><span class="o">=</span><span class="n">development_project</span><span class="p">,</span>
+                                        <span class="n">development_title</span><span class="o">=</span><span class="n">development_title</span><span class="p">,</span>
+                                        <span class="n">development_content</span><span class="o">=</span><span class="n">development_content</span>
+                                        <span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">DevelopmentForm</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;main_page/development_form.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jon Gaffney.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

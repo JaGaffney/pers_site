@@ -1,0 +1,461 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer Documentation &mdash; Jon Gaffney - Portfollio 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Jon Gaffney portfollio: Django documentation" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Jon Gaffney - Portfollio
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-main_page.views">Main pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-views">Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-main_page.templatetags.pers_site_filter">Custom Template tags</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Jon Gaffney - Portfollio</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Developer Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dev_docs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developer-documentation">
+<h1>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="module-main_page.views">
+<span id="main-pages"></span><h2>Main pages<a class="headerlink" href="#module-main_page.views" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="main_page.views.HomePageView">
+<em class="property">class </em><code class="descclassname">main_page.views.</code><code class="descname">HomePageView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#HomePageView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.HomePageView" title="Permalink to this definition">¶</a></dt>
+<dd><p>the generic homepageview template, using generic template view</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>TemplateView</strong> (<em>object</em>) – generic template view but requring specal data so unable to use the MainPageView</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="class">
+<dt id="main_page.views.FeedbackCreate">
+<em class="property">class </em><code class="descclassname">main_page.views.</code><code class="descname">FeedbackCreate</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#FeedbackCreate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.FeedbackCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>allows for the creation of feedback, saves the data to the db upon sucess</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>CreateView</strong> (<em>object</em>) – the base django CreateView  generic view</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="main_page.views.FeedbackCreate.model">
+<code class="descname">model</code><a class="headerlink" href="#main_page.views.FeedbackCreate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">main_page.models.Feedback</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="class">
+<dt id="main_page.views.DevelopmentCreate">
+<em class="property">class </em><code class="descclassname">main_page.views.</code><code class="descname">DevelopmentCreate</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#DevelopmentCreate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.DevelopmentCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>allows for the creation of development, saves the data to the db upon sucess</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>LoginRequiredMixin</strong> (<em>object</em>) – requries a valid user</li>
+<li><strong>CreateView</strong> (<em>object</em>) – the base django CreateView  generic view</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="main_page.views.DevelopmentCreate.model">
+<code class="descname">model</code><a class="headerlink" href="#main_page.views.DevelopmentCreate.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">main_page.models.Development</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="class">
+<dt id="main_page.views.MainPageView">
+<em class="property">class </em><code class="descclassname">main_page.views.</code><code class="descname">MainPageView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#MainPageView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.MainPageView" title="Permalink to this definition">¶</a></dt>
+<dd><p>the main generic template view for pages not requiring any data other than template
+this probally isnt the best way to use a view but it removed a lot of uneeded code</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>TemplateView</strong> (<em>object</em>) – passes in the template name from the URL’s</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="function">
+<dt id="main_page.views.feedback_viewer">
+<code class="descclassname">main_page.views.</code><code class="descname">feedback_viewer</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#feedback_viewer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.feedback_viewer" title="Permalink to this definition">¶</a></dt>
+<dd><p>displays all of the feedback data from the db</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<em>object</em>) – the request sent from the browser</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="function">
+<dt id="main_page.views.feedback_item">
+<code class="descclassname">main_page.views.</code><code class="descname">feedback_item</code><span class="sig-paren">(</span><em>request</em>, <em>item_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#feedback_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.feedback_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>displays the feedback data to the user when selecetd</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request</strong> (<em>object</em>) – the request sent from the browser</li>
+<li><strong>item_id</strong> (<em>integer</em>) – the item selected by the user which returns its pk to be search in the db</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="function">
+<dt id="main_page.views.feedback_update">
+<code class="descclassname">main_page.views.</code><code class="descname">feedback_update</code><span class="sig-paren">(</span><em>request</em>, <em>item_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#feedback_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.feedback_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>saves the new feedback data to the database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request</strong> (<em>object</em>) – the request sent from the browser</li>
+<li><strong>item_id</strong> (<em>integer</em>) – the item selected by the user which returns its pk to be search in the db</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="function">
+<dt id="main_page.views.feedback_new">
+<code class="descclassname">main_page.views.</code><code class="descname">feedback_new</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#feedback_new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.feedback_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>updates development data to the database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<em>object</em>) – the request sent from the browser</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="function">
+<dt id="main_page.views.development_viewer">
+<code class="descclassname">main_page.views.</code><code class="descname">development_viewer</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#development_viewer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.development_viewer" title="Permalink to this definition">¶</a></dt>
+<dd><p>displays all of the development data from the db</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<em>object</em>) – the request sent from the browser</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="function">
+<dt id="main_page.views.development_item">
+<code class="descclassname">main_page.views.</code><code class="descname">development_item</code><span class="sig-paren">(</span><em>request</em>, <em>item_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#development_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.development_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>displays the development data to the user when selecetd</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request</strong> (<em>object</em>) – the request sent from the browser</li>
+<li><strong>item_id</strong> (<em>integer</em>) – the item selected by the user which returns its pk to be search in the db</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="function">
+<dt id="main_page.views.development_update">
+<code class="descclassname">main_page.views.</code><code class="descname">development_update</code><span class="sig-paren">(</span><em>request</em>, <em>item_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#development_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.development_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>updates development data to the database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request</strong> (<em>object</em>) – the request sent from the browser</li>
+<li><strong>item_id</strong> (<em>integer</em>) – the item selected by the user which returns its pk to be search in the db</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-main_page.views"></span><dl class="function">
+<dt id="main_page.views.development_new">
+<code class="descclassname">main_page.views.</code><code class="descname">development_new</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/views.html#development_new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.views.development_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>saves the new development data to the database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<em>object</em>) – the request sent from the browser</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-views">
+<span id="projects"></span><h2>Projects<a class="headerlink" href="#module-views" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="views.ProjectView">
+<em class="property">class </em><code class="descclassname">views.</code><code class="descname">ProjectView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views.html#ProjectView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.ProjectView" title="Permalink to this definition">¶</a></dt>
+<dd><p>the main generic template view for pages not requiring any data other than template
+this probally isnt the best way to use a view but it removed a lot of uneeded code</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>TemplateView</strong> (<em>object</em>) – passes in the template name from the URL’s</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-main_page.templatetags.pers_site_filter">
+<span id="custom-template-tags"></span><h2>Custom Template tags<a class="headerlink" href="#module-main_page.templatetags.pers_site_filter" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="main_page.templatetags.pers_site_filter.link_finder">
+<code class="descclassname">main_page.templatetags.pers_site_filter.</code><code class="descname">link_finder</code><span class="sig-paren">(</span><em>db_entry</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_page/templatetags/pers_site_filter.html#link_finder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_page.templatetags.pers_site_filter.link_finder" title="Permalink to this definition">¶</a></dt>
+<dd><p>turns entries into the database into html code if typed in inititally so links can be used on the main page
+‘Updates’ post. this is only accessable by the main admin user who is posting to the updates</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>db_entry</strong> (<em>string</em>) – string with html code embed that is returned a mark_safe</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Jon Gaffney portfollio: Django documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jon Gaffney.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

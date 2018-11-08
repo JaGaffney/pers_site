@@ -1,0 +1,75 @@
+.. pers_site documentation master file, created by
+   sphinx-quickstart on Fri Nov  2 12:25:12 2018.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Developer Documentation
+*****************************************
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+
+Main pages
+----------------------------------
+.. automodule:: main_page.views
+.. autoclass:: HomePageView
+	:members: get_context_data
+
+
+.. automodule:: main_page.views
+.. autoclass:: FeedbackCreate
+	:members:
+
+.. automodule:: main_page.views
+.. autoclass:: DevelopmentCreate
+	:members:
+
+.. automodule:: main_page.views
+.. autoclass:: MainPageView
+	:members:
+
+.. automodule:: main_page.views
+.. autofunction:: feedback_viewer
+
+
+.. automodule:: main_page.views
+.. autofunction:: feedback_item
+
+
+.. automodule:: main_page.views
+.. autofunction:: feedback_update
+
+.. automodule:: main_page.views
+.. autofunction:: feedback_new
+
+
+.. automodule:: main_page.views
+.. autofunction:: development_viewer
+
+
+.. automodule:: main_page.views
+.. autofunction:: development_item
+
+
+.. automodule:: main_page.views
+.. autofunction:: development_update
+
+
+.. automodule:: main_page.views
+.. autofunction:: development_new
+
+
+Projects
+----------------------------------
+.. automodule:: views
+.. autoclass:: ProjectView
+	:members:
+
+
+Custom Template tags
+----------------------------------
+.. automodule:: main_page.templatetags.pers_site_filter
+.. autofunction:: link_finder
+
